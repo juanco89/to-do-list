@@ -1,6 +1,7 @@
 
 package com.juanco.todo.modelo.db;
 
+import com.juanco.todo.util.Logg;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -29,7 +30,7 @@ public class ConnDB {
                 conn = DriverManager.getConnection("jdbc:postgresql://" + DB_HOST + "/" + DB_NAME, 
                         DB_USER, DB_SECRET);
             } catch (ClassNotFoundException | SQLException ex) {
-                System.out.println(ex.getLocalizedMessage());
+                Logg.registrar(ex.getLocalizedMessage());
             }
         }
         return conn;
