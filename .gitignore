@@ -1,5 +1,6 @@
 # maven
 target/
+log/
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.next
@@ -20,3 +21,8 @@ release.properties
 # Netbeans
 nbactions.xml
 nb-configuration.xml
+
+# Eclipse
+.classpath
+.project
+.settings/
