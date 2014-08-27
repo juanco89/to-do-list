@@ -12,7 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Dao para la tabla TAREA.
+ * 
+ * Se construye este DAO usando JDBC sencillo.
+ * 
  * @author Juan C. Orozco <juanco89@gmail.com>
  */
 public class TareaDao {
@@ -27,7 +30,7 @@ public class TareaDao {
         List<Tarea> lista = null;
         try {
             Statement statement = conn.createStatement();
-            ResultSet rs = statement.executeQuery("select * from agenda order by realizado, id");
+            ResultSet rs = statement.executeQuery("select * from tarea order by realizado, id");
             
             lista = new ArrayList<>();
             Tarea a;

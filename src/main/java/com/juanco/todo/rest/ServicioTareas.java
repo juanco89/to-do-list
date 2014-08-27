@@ -1,14 +1,18 @@
 package com.juanco.todo.rest;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import com.juanco.todo.modelo.dao.TareaDao;
 import com.juanco.todo.modelo.dto.Tarea;
 
 
@@ -25,9 +29,19 @@ public class ServicioTareas implements Serializable {
 	@Path("/buscarTodas")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Tarea> buscarTodas() {
+	public List<Tarea> buscarTodas(@DefaultValue("true") @QueryParam("realizadas") boolean realizadas ) {
 		
-		return new ArrayList<Tarea>();
+		// TODO: Crear acceso a datos con tecnología JEE (EJB -> JPA)
+		TareaDao dao = new TareaDao();
+		return dao.buscarTodo();
+	}
+	
+	@Path("/marcarComoRealizada/{tarea}")
+	@PUT
+	@Produces(MediaType.APPLICATION_JSON)
+	public boolean marcarComoRealizada(@PathParam("tarea") String tarea) {
+		
+		return false;
 	}
 	
 }
