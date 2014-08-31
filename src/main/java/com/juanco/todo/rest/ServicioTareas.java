@@ -12,8 +12,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import com.juanco.todo.modelo.dao.TareaDao;
-import com.juanco.todo.modelo.dto.Tarea;
+import com.juanco.todo.modelo.jdbc.dao.TareaDao;
+import com.juanco.todo.modelo.jdbc.dto.Tarea;
 
 
 /**

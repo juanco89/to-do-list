@@ -1,9 +1,10 @@
 
-package com.juanco.todo.modelo.dao;
+package com.juanco.todo.modelo.jdbc.dao;
 
-import com.juanco.todo.modelo.db.ConnDB;
-import com.juanco.todo.modelo.dto.Tarea;
+import com.juanco.todo.modelo.jdbc.db.ConnDB;
+import com.juanco.todo.modelo.jdbc.dto.Tarea;
 import com.juanco.todo.util.Logg;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;

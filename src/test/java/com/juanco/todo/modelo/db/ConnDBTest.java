@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import com.juanco.todo.modelo.jdbc.db.ConnDB;
 import static org.junit.Assert.*;
 
 /**

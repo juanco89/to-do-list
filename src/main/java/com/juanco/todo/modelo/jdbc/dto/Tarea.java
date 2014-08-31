@@ -1,5 +1,5 @@
 
-package com.juanco.todo.modelo.dto;
+package com.juanco.todo.modelo.jdbc.dto;
 
 import java.io.Serializable;
 import java.util.Date;

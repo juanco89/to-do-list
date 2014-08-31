@@ -1,5 +1,5 @@
 
-package com.juanco.todo.modelo.db;
+package com.juanco.todo.modelo.jdbc.db;
 
 import com.juanco.todo.util.Logg;
 import java.sql.Connection;
