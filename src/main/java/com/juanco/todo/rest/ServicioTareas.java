@@ -30,6 +30,12 @@ public class ServicioTareas implements Serializable {
 	@EJB
 	private TareaDaoEJB dao;
 	
+	/**
+	 * Busca las tareas almacenadas.
+	 * 
+	 * @param realizadas - Boolean - Indica si se incluyen las tareas realizadas.
+	 * @return List<Tarea> - Lista de tareas encontradas.
+	 */
 	@Path("/buscarTodas")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
@@ -45,5 +51,4 @@ public class ServicioTareas implements Serializable {
 		
 		return false;
 	}
-	
 }

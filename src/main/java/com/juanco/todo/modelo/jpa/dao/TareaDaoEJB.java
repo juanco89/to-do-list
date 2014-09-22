@@ -25,8 +25,7 @@ public class TareaDaoEJB {
     public List<Tarea> buscarTodo()	{	
 		List<Tarea> resultado = null;
 		try {
-			em.createNativeQuery("SELECT * FROM tarea", Tarea.class);
-			resultado = (List<Tarea>) em.createQuery("SELECT * FROM tarea").getResultList();
+			resultado =  em.createNativeQuery("SELECT * FROM tarea", Tarea.class).getResultList();
 		}catch(Exception e) {
 			// logging
 		}

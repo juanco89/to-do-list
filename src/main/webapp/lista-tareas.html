@@ -3,22 +3,21 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>AJAX REST TO DO</title>
+		
+		<!-- jQuery -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<!-- JS -->
+		<script src="js/conn-rest.js" ></script>
+		<script src="js/table-task.js" ></script>
 	</head>
 	<body>
-		<h1>Lista de tareas</h1>
-		
-		<table>
-			<tr>
-				<th>Descripción</th>
-				<th>Creación</th>
-				<th>Realizada</th>
-			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-		</table>
-		
+		<div>
+			<h1>Lista de tareas</h1>
+			
+			<div id="msg"></div>
+			<div id="contenido-tareas">
+				<div id="datos-grid"></div>
+			</div>
+		</div>
 	</body>
 </html>
