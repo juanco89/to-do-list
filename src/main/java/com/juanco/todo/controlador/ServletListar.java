@@ -28,7 +28,7 @@ public class ServletListar extends HttpServlet {
         List<Tarea> lista = dao.buscarTodo();
         
         request.setAttribute("tareas", lista);
-        request.getRequestDispatcher("/index.jsp").forward(request, response);
+        request.getRequestDispatcher("/lista-tareas.jsp").forward(request, response);
     }
 
     @Override

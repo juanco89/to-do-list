@@ -3,6 +3,7 @@ package com.juanco.todo.rest;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
@@ -12,8 +13,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import com.juanco.todo.modelo.jdbc.dao.TareaDao;
-import com.juanco.todo.modelo.jdbc.dto.Tarea;
+import com.juanco.todo.modelo.jpa.dao.TareaDaoEJB;
+import com.juanco.todo.modelo.jpa.entidades.Tarea;
 
 
 /**
@@ -26,13 +27,14 @@ import com.juanco.todo.modelo.jdbc.dto.Tarea;
 @Path("tareas")
 public class ServicioTareas implements Serializable {
 	
+	@EJB
+	private TareaDaoEJB dao;
+	
 	@Path("/buscarTodas")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Tarea> buscarTodas(@DefaultValue("true") @QueryParam("realizadas") boolean realizadas ) {
 		
-		// TODO: Crear acceso a datos con tecnología JEE (EJB -> JPA)
-		TareaDao dao = new TareaDao();
 		return dao.buscarTodo();
 	}
 	
