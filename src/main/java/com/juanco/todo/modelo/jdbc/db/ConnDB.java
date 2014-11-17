@@ -14,7 +14,7 @@ import java.sql.SQLException;
 public class ConnDB {
 
     private static final String DB_NAME = "to-do";
-    private static final String DB_USER = "postgres";
+    private static final String DB_USER = "conex";
     private static final String DB_HOST = "localhost";
     private static final String DB_SECRET = "plokijuh";
     
