@@ -8,16 +8,25 @@
     <servlet-name>ServletListar</servlet-name>
     <url-pattern>/listar-tareas</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <servlet-name>ServletGuardar</servlet-name>
     <servlet-class>com.juanco.todo.controlador.ServletGuardar</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ServletGuardar</servlet-name>
-    <url-pattern>/guardar-tareas</url-pattern>
+    <url-pattern>/guardar-tarea</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>ServletTerminarTarea</servlet-name>
+    <servlet-class>com.juanco.todo.controlador.ServletTerminarTarea</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletTerminarTarea</servlet-name>
+    <url-pattern>/terminar-tarea</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>jersey-serlvet</servlet-name>
+  	<servlet-name>jersey-serlvet</servlet-name>
     <servlet-class>
 			org.glassfish.jersey.servlet.ServletContainer
     </servlet-class>

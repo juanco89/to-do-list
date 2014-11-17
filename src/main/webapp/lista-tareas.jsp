@@ -12,7 +12,7 @@
     <body>
     	<div id="contenido">
 	    	<div>
-	    		<form name="frmGuardarTareaEstatica" method="post" action="guardar-tareas">
+	    		<form name="frmGuardarTareaEstatica" method="post" action="guardar-tarea">
 	    			<label for="txtDescripcion">Descripción</label>
 	    			<input type="text" id="txtDescripcion" name="txtDescripcion" value="" />
 	    			
@@ -24,7 +24,7 @@
 	    		<tr>
 	    			<th>#</th>
 	    			<th>Descripción</th>
-	    			<th>Hora</th>
+	    			<th>Fecha - Hora</th>
 	    			<th>Realizada</th>
 	    		</tr>
 	    		<%
@@ -39,7 +39,9 @@
 				    			<th><%= i %></th>
 				    			<th><%= t.getDescripcion() %></th>
 				    			<th><%= format.format(t.getFecha()) %></th>
-				    			<th><%= t.isRealizado() %></th>
+				    			<th><%= t.isRealizado()? 
+				    					"Si": 
+				    					"<a href='terminar-tarea?id=" +  t.getId() + "'>No</a>" %></th>
 				    		</tr>
 	    		<%
 	    				}

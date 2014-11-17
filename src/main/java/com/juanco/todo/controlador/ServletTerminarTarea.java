@@ -2,7 +2,6 @@ package com.juanco.todo.controlador;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,53 +9,55 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.juanco.todo.modelo.jdbc.dao.TareaDao;
-import com.juanco.todo.modelo.jdbc.dto.Tarea;
 import com.juanco.todo.util.Logg;
 
 /**
- * Controlador (Servlet) para la operacion de guardar tarea.
+ * Servlet encargado de actualizar las tarea marcandolas como realizadas.
  * 
- * @author juan C. Orozco <juanco89@gmail.com>
+ * @author juanco89@gmail.com
  * @version 1.0
  */
-public class ServletGuardar extends HttpServlet {
+public class ServletTerminarTarea extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
-	
+       
+
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-		Object descripcion = request.getParameter("txtDescripcion");
+		Object identificador = request.getParameter("id");
 		
-		if(descripcion != null) {
-			Tarea dto = new Tarea();
-			dto.setDescripcion((String)descripcion);
-			dto.setFecha(new Date());
-			dto.setRealizado(false);
-			
-			TareaDao dao = new TareaDao();
+		if(identificador != null) {
+			int id = -1;
 			try {
-				dao.insertar(dto);
-			} catch (SQLException e) {
-				Logg.registrar(e.getLocalizedMessage());
+				id = Integer.parseInt( ((String)identificador) );
+				
+				// Se actualiza la tarea
+				TareaDao dao = new TareaDao();
+				try {
+					dao.marcarComoRealizada(id);
+				} catch (SQLException e) {
+					Logg.registrar(e.getLocalizedMessage());
+				}
+			}catch(Exception e) {
+				Logg.registrar("No se pudo realizar casting del identificador: " + e.getLocalizedMessage());
 			}
 		}
-        // Se redirige hacia el servlet de listar tareas.
+        
+    	// Se redirige hacia el servlet de listar tareas.
         request.getRequestDispatcher("/listar-tareas").forward(request, response);
     }
+	
 
-	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		processRequest(request, response);
 	}
 
-	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		processRequest(request, response);
 	}
-	
+
 	@Override
 	public String getServletInfo() {
-		return "Almacena en db una nueva tarea";
+		return "Actualiza una tarea específica marcándola como realizada";
 	}
 }

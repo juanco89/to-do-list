@@ -87,4 +87,30 @@ public class TareaDao {
 			conn.setAutoCommit(true);
 		}
 	}
+
+	/**
+	 * Actualiza la tarea con id=id marcandola como realizada.
+	 * @param id - Identificador de la tarea.
+	 * @return boolean - Indica si el proceso fue exitoso.
+	 * @throws SQLException
+	 */
+	public boolean marcarComoRealizada(int id) throws SQLException {
+		String sql = "UPDATE tarea "
+				+ " SET realizado = true "
+				+ " WHERE id = ?";
+		try(PreparedStatement statement = conn.prepareStatement(sql)) {
+			conn.setAutoCommit(false);
+			statement.setInt(1, id);
+			
+			int r = statement.executeUpdate();
+			conn.commit();
+			
+			return r == 1;
+		}catch(Exception e) {
+			Logg.registrar(e.getLocalizedMessage());
+			return false;
+		}finally {
+			conn.setAutoCommit(true);
+		}
+	}
 }
