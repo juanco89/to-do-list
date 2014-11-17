@@ -17,12 +17,15 @@ public class Tarea implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 
+	@Column
 	private String descripcion;
 
+	@Column
 	private Timestamp fecha;
 
+	@Column
 	private Boolean realizado;
-
+	
 	public Tarea() {
 	}
 

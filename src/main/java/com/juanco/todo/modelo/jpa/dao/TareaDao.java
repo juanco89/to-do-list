@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import com.juanco.todo.modelo.jpa.entidades.Tarea;
+import com.juanco.todo.util.Logg;
 
 /**
  * Dao EJB para la entidad TAREA.
@@ -22,12 +23,13 @@ public class TareaDao {
     public TareaDao() {
     }
     
-	public List<Tarea> buscarTodo()	{	
+	public List<Tarea> buscarTodo()	{
 		List<Tarea> resultado = null;
 		try {
+			// JPA: "SELECT t FROM Tarea t ORDER BY t.fecha, t.realizado"
 			resultado = (List<Tarea>) em.createNativeQuery("SELECT * FROM tarea", Tarea.class).getResultList();
 		}catch(Exception e) {
-			// logging
+			Logg.registrar(e.getLocalizedMessage());
 		}
     	return resultado;
     }

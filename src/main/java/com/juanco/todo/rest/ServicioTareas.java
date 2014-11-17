@@ -13,7 +13,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import com.juanco.todo.modelo.jpa.dao.TareaDaoEJB;
+import com.juanco.todo.modelo.jpa.dao.TareaDao;
 import com.juanco.todo.modelo.jpa.entidades.Tarea;
 
 
@@ -27,8 +27,10 @@ import com.juanco.todo.modelo.jpa.entidades.Tarea;
 @Path("tareas")
 public class ServicioTareas implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
+	
 	@EJB
-	private TareaDaoEJB dao;
+	private TareaDao dao;
 	
 	/**
 	 * Busca las tareas almacenadas.

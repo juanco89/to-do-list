@@ -6,17 +6,43 @@
 		
 		<!-- jQuery -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		
 		<!-- JS -->
 		<script src="js/conn-rest.js" ></script>
 		<script src="js/table-task.js" ></script>
+		
+		<!-- jqGrid JS -->
+		<script src="js/jqgrid/js/i18n/grid.locale-es.js" type="text/javascript"></script>
+		<script src="js/jqgrid/js/jquery.jqGrid.min.js" type="text/javascript"></script>
+		
+		<!-- jqGrid CSS -->
+		<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/smoothness/jquery-ui.min.css" />
+		<link rel="stylesheet" type="text/css" media="screen" href="js/jqgrid/css/ui.jqgrid.css" />
+		
+		<script type="text/javascript">
+			$(document).ready(function() {
+				App.table.init();
+				App.rest.getTasks(App.table.showData);
+			});
+		</script>
 	</head>
 	<body>
 		<div>
-			<h1>Lista de tareas</h1>
+			<div>
+				<form name="frmGuardarTareaAjax" method="post" action="">
+					
+				</form>
+				<hr />
+				<form name="frmBuscarTareas" method="get" action="">
+					<input type="checkbox" name="chkRealizadas" value="y" />Mostrar las tareas realizadas
+				</form>
+			</div>
+			
+			<br />
 			
 			<div id="msg"></div>
 			<div id="contenido-tareas">
-				<div id="datos-grid"></div>
+				<table id="datos-grid"></table>
 			</div>
 		</div>
 	</body>
