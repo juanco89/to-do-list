@@ -14,18 +14,18 @@ import com.juanco.todo.modelo.jpa.entidades.Tarea;
  * @author Juan C. Orozco <juanco89@gmail.com>
  */
 @Stateless
-public class TareaDaoEJB {
+public class TareaDao {
 
 	@PersistenceContext(unitName="UnidadTODO")
 	private EntityManager em;
 	
-    public TareaDaoEJB() {
+    public TareaDao() {
     }
     
-    public List<Tarea> buscarTodo()	{	
+	public List<Tarea> buscarTodo()	{	
 		List<Tarea> resultado = null;
 		try {
-			resultado =  em.createNativeQuery("SELECT * FROM tarea", Tarea.class).getResultList();
+			resultado = (List<Tarea>) em.createNativeQuery("SELECT * FROM tarea", Tarea.class).getResultList();
 		}catch(Exception e) {
 			// logging
 		}
