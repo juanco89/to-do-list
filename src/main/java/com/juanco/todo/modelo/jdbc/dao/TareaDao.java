@@ -44,7 +44,7 @@ public class TareaDao {
             while(rs.next()) {
                 a = new Tarea();
                 a.setId(rs.getInt("id"));
-                a.setFecha(rs.getDate("fecha"));
+                a.setFecha(rs.getTimestamp("fecha"));
                 a.setDescripcion(rs.getString("descripcion"));
                 a.setRealizado(rs.getBoolean("realizado"));
                 
