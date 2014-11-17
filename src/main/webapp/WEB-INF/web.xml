@@ -8,11 +8,19 @@
     <servlet-name>ServletListar</servlet-name>
     <url-pattern>/listar-tareas</url-pattern>
   </servlet-mapping>
+    <servlet>
+    <servlet-name>ServletGuardar</servlet-name>
+    <servlet-class>com.juanco.todo.controlador.ServletGuardar</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletGuardar</servlet-name>
+    <url-pattern>/guardar-tareas</url-pattern>
+  </servlet-mapping>
   <servlet>
     <servlet-name>jersey-serlvet</servlet-name>
     <servlet-class>
 			org.glassfish.jersey.servlet.ServletContainer
-       	</servlet-class>
+    </servlet-class>
     <init-param>
       <param-name>jersey.config.server.provider.packages</param-name>
       <param-value>com.juanco.todo.rest</param-value>

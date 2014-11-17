@@ -6,9 +6,11 @@ import com.juanco.todo.modelo.jdbc.dto.Tarea;
 import com.juanco.todo.util.Logg;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +29,10 @@ public class TareaDao {
         conn = ConnDB.getConn();
     }
     
+    /**
+     * Consulta todas las tareas almacenadas
+     * @return List<Tarea> - Lista de tareas con los datos encontrados.
+     */
     public List<Tarea> buscarTodo() {
         List<Tarea> lista = null;
         try {
@@ -44,9 +50,41 @@ public class TareaDao {
                 
                 lista.add(a);
             }
+            statement.close();
         } catch (SQLException ex) {
             Logg.registrar(ex.getLocalizedMessage());
         }
         return lista;
     }
+
+    /**
+     * Almacena la informacion de una tarea en base de datos.
+     * 
+     * @param dto - Tarea - Dto con los datos a insertar. 
+     * @return boolean - Indica si la operación fue exitosa.
+     * @throws SQLException
+     */
+	public boolean insertar(Tarea dto) throws SQLException {
+		if(dto == null) return false;
+		
+		String sql = "INSERT INTO tarea "
+				+ " (fecha, descripcion, realizado) "
+				+ " VALUES (?, ?, ?)";
+		try(PreparedStatement statement = conn.prepareStatement(sql)) {
+			conn.setAutoCommit(false);
+			statement.setTimestamp(1, new Timestamp(dto.getFecha().getTime()));
+			statement.setString(2, dto.getDescripcion());
+			statement.setBoolean(3, dto.isRealizado());
+			
+			int r = statement.executeUpdate();
+			conn.commit();
+			
+			return r == 1;
+		}catch(Exception e) {
+			Logg.registrar(e.getLocalizedMessage());
+			return false;
+		}finally {
+			conn.setAutoCommit(true);
+		}
+	}
 }
