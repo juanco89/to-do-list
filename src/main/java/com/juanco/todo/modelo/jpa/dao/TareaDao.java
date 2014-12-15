@@ -34,4 +34,13 @@ public class TareaDao {
     	return resultado;
     }
     
+	public boolean guardar(Tarea tarea) {
+		try {
+			em.persist(tarea);
+			return true;
+		}catch(Exception e) {
+			Logg.registrar(e.getLocalizedMessage());
+			return false;
+		}
+	}
 }

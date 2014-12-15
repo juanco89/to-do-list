@@ -1,6 +1,7 @@
 package com.juanco.todo.rest;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -44,6 +45,24 @@ public class ServicioTareas implements Serializable {
 	public List<Tarea> buscarTodas(@DefaultValue("true") @QueryParam("realizadas") boolean realizadas ) {
 		
 		return dao.buscarTodo();
+	}
+	
+	@Path("/guardar")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public Tarea agregar(@QueryParam("descripcion") String descripcion) {
+		if(descripcion != null) {
+			Tarea t = new Tarea();
+			t.setFecha(new Timestamp(System.currentTimeMillis()));
+			if("".equals(descripcion))
+				t.setDescripcion("Vacio ...");
+			else
+				t.setDescripcion(descripcion);
+			t.setRealizado(false);
+			dao.guardar(t);
+			return t;
+		}
+		return null;
 	}
 	
 	@Path("/marcarComoRealizada/{tarea}")

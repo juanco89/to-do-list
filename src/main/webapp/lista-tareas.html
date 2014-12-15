@@ -30,9 +30,14 @@
 		<div>
 			<div>
 				<form name="frmGuardarTareaAjax" method="post" action="">
-					
+					<label for="txtDescripcion">Descripción</label>
+	    			<input type="text" id="txtDescripcion" name="txtDescripcion" value="" />
+	    			
+	    			<input type="button" id="btnGuardar" name="btnGuardar" value="Guardar" onclick="App.rest.addTask($('#txtDescripcion').val(), App.table.addRow);"/>
 				</form>
+				
 				<hr />
+				
 				<form name="frmBuscarTareas" method="get" action="">
 					<input type="checkbox" name="chkRealizadas" value="y" />Mostrar las tareas realizadas
 				</form>

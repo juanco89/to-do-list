@@ -1,7 +1,10 @@
 package com.juanco.todo.modelo.jpa.entidades;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import java.sql.Timestamp;
 
 
@@ -9,6 +12,7 @@ import java.sql.Timestamp;
  * Clase de persistencia para la tabla TAREA.
  */
 @Entity
+@XmlRootElement
 @NamedQuery(name="Tarea.findAll", query="SELECT t FROM Tarea t")
 public class Tarea implements Serializable {
 	private static final long serialVersionUID = 1L;
