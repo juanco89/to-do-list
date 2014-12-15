@@ -1,9 +1,16 @@
 to-do-list
 ==========
 
-Lista To-Do web usando JEE.
+Es un proyecto de aprendizaje en el cual se busca ejemplificar el uso de diferentes tecnologías, además de comparar el desarrollo web usando JEE y librerías modernas con el mismo usando tecnologías estándar. Se logra entonces un sencillo ejemplo en el cual comparar una aplicación web estática con una dinámica.
 
-En este proyecto se usa JEE sin ningún framework y sirve para explicar y dejar claro el concepto de Servlet.
-La vista (cliente) se apoya con tecnologías como jQuery.
 
-Para la implementación de los controladores en el servidor se usan Servlets que deben ser defnidos en el descriptor de despliegue web.xml. En esta aplicación se usará un servlet (controlador) por caso de uso, esto dado la simplicidad de la aplicación.
+### Tecnologías usadas
+En el desarrollo del proyecto se pueden encontrar las siguientes tecnologías:
+> * jQuery - jqGrid
+> * Servicios REST - Ajax
+> * JPA
+> * EJB
+
+- - -
+> Juan C. Orozco.
+> 2013
