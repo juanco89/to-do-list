@@ -34,6 +34,11 @@ var App = (function (module) {
 		    sortorder: "asc",
 		    loadComplete: function (data) {
 		    	$('#datos-grid * input[type="checkbox"][checked="checked"]').attr("disabled", true);
+		    	
+		    	// Evento para marcar como realizada
+		    	$('#datos-grid * input[type="checkbox"]').on('change', function(event){
+		    		$( this ).prop('disabled', true);
+	    		});
 		    }
 		    // caption:"Lista de tareas"
 			// pager: '#un-div-pager'
