@@ -27,7 +27,7 @@ public class TareaDao {
 		List<Tarea> resultado = null;
 		try {
 			// JPA: "SELECT t FROM Tarea t ORDER BY t.fecha, t.realizado"
-			resultado = (List<Tarea>) em.createNativeQuery("SELECT * FROM tarea", Tarea.class).getResultList();
+			resultado = (List<Tarea>) em.createNativeQuery("SELECT * FROM tarea ORDER BY realizado, fecha", Tarea.class).getResultList();
 		}catch(Exception e) {
 			Logg.registrar(e.getLocalizedMessage());
 		}

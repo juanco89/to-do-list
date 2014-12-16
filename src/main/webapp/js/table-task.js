@@ -39,6 +39,8 @@ var App = (function (module) {
 			// pager: '#un-div-pager'
 		});
 		// grid.jqGrid('navGrid','#un-div-pager',{edit:false,add:false,del:false});
+		
+		grid.jqGrid('sortGrid', 'realizado', true, 'asc');
 	};
 	
 	module.table.showData = function(datos) {
