@@ -23,6 +23,13 @@
 			$(document).ready(function() {
 				App.table.init();
 				App.rest.getTasks(App.table.showData);
+				
+				$('#txtDescripcion').keydown(function(e) {
+					if(e.keyCode == 13) {
+						$('#btnGuardar').click();
+				    	return false;
+				    }
+				});
 			});
 		</script>
 	</head>

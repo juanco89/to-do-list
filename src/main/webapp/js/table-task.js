@@ -72,6 +72,7 @@ var App = (function (module) {
 		if(typeof tarea !== 'undefined' && tarea != null) {
 			grid.jqGrid("addRowData", tarea.id, tarea, "last");
 			$('#datos-grid tr[id="' + tarea.id + '"] input[type="checkbox"]').on('change', eventoChangeForCheckboxes);
+			$('#txtDescripcion').val('');
 		}
 	};
 	
