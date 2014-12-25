@@ -10,6 +10,22 @@ var App = (function (module) {
 	
 	var grid = null;		 // Almacena la referencia del elemento HTML que contiene el GRID
 	
+	var eventoChangeForCheckboxes = function(event){
+		var tr = $(event.target).closest('tr');
+	    var index = tr[0].id;
+	    // var row = grid.jqGrid('getRowData', index);
+	    
+		App.rest.finishTask(index, function(tarea) {
+			if(typeof(tarea) != 'undefined' && tarea != null) {
+				$('#datos-grid tr[id="' + index +'"] input[type="checkbox"]').attr("disabled", true);
+			}else {
+				$('#datos-grid tr[id="' + index +'"] input[type="checkbox"]').attr("checked", false);
+				alert("No se pudo marcar la tarea como realizada");
+			}
+		});
+	};
+	
+	
 	/* ** Funciones publicas (API del modulo) ** */
 	
 	module.table.init = function() {
@@ -36,22 +52,7 @@ var App = (function (module) {
 		    	$('#datos-grid * input[type="checkbox"][checked="checked"]').attr("disabled", true);
 		    	
 		    	// Evento para marcar como realizada
-		    	$('#datos-grid * input[type="checkbox"]').on('change', function(event){
-		    		// $( this ).prop('disabled', true);
-		    		
-		    		var tr = $(event.target).closest('tr');
-		            var index = tr[0].id;
-		            // var row = grid.jqGrid('getRowData', index);
-		            
-		    		App.rest.finishTask(index, function(tarea) {
-		    			if(typeof(tarea) != 'undefined' && tarea != null) {
-		    				$('#datos-grid tr[id="' + index +'"] input[type="checkbox"]').attr("disabled", true);
-		    			}else {
-		    				$('#datos-grid tr[id="' + index +'"] input[type="checkbox"]').attr("checked", false);
-		    				alert("No se pudo marcar la tarea como realizada");
-		    			}
-		    		});
-	    		});
+		    	$('#datos-grid * input[type="checkbox"]').on('change', eventoChangeForCheckboxes);
 		    }
 		    // caption:"Lista de tareas"
 			// pager: '#un-div-pager'
@@ -69,8 +70,8 @@ var App = (function (module) {
 	
 	module.table.addRow = function(tarea) {
 		if(typeof tarea !== 'undefined' && tarea != null) {
-			var lastId = parseInt(grid.getDataIDs().length) + 1;
-			grid.jqGrid("addRowData", lastId, tarea, "last");
+			grid.jqGrid("addRowData", tarea.id, tarea, "last");
+			$('#datos-grid tr[id="' + tarea.id + '"] input[type="checkbox"]').on('change', eventoChangeForCheckboxes);
 		}
 	};
 	
