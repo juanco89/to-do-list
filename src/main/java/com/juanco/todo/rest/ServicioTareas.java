@@ -65,11 +65,25 @@ public class ServicioTareas implements Serializable {
 		return null;
 	}
 	
-	@Path("/marcarComoRealizada/{tarea}")
-	@PUT
+	@Path("/marcarComoRealizada")
+	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public boolean marcarComoRealizada(@PathParam("tarea") String tarea) {
+	public Tarea marcarComoRealizada(@QueryParam("id") String id) {
+		Tarea t = dao.buscar(Integer.parseInt(id));
+		if(t != null) {
+			t.setRealizado(true);
+			if(dao.actualizar(t)) {
+				return t;
+			}
+		}
+		return null;
+	}
+	
+	@Path("/tarea/{id}")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public Tarea buscarTarea(@PathParam("id") String id) {
 		
-		return false;
+		return dao.buscar(Integer.parseInt(id));
 	}
 }

@@ -10,6 +10,7 @@ var App = (function (module) {
 	
 	var urlAllTasks = "/to-do-list/rest/tareas/buscarTodas";
 	var urlSaveTask = "/to-do-list/rest/tareas/guardar";
+	var urlFinishTask = "/to-do-list/rest/tareas/marcarComoRealizada";
 	
 	
 	/* ***** Funciones publicas ***** */
@@ -20,7 +21,7 @@ var App = (function (module) {
 		  type: 'get',
 		  dataType: 'json',
 		  error: function(textStatus) {
-			  // alert(textStatus);
+			  alert(textStatus);
 		  },
 		  success: function(data){ callback(data); }
 		});
@@ -33,6 +34,24 @@ var App = (function (module) {
 			
 			$.ajax({
 			  url: urlSaveTask,
+			  type: 'get',
+			  data: param,
+			  dataType: 'json',
+			  error: function(textStatus) {
+				  alert(textStatus);
+			  },
+			  success: function(tarea){ callback(tarea); }
+			});
+		}
+	};
+	
+	module.rest.finishTask = function(id, callback) {
+		if(typeof(id) != "undefined") {
+			var param = {};
+			param.id = id;
+			
+			$.ajax({
+			  url: urlFinishTask,
 			  type: 'get',
 			  data: param,
 			  dataType: 'json',

@@ -43,4 +43,23 @@ public class TareaDao {
 			return false;
 		}
 	}
+	
+	public Tarea buscar(int id) {
+		try {
+			return em.find(Tarea.class, id);
+		}catch(Exception e) {
+			Logg.registrar(e.getLocalizedMessage());
+			return null;
+		}
+	}
+	
+	public boolean actualizar(Tarea tarea) {
+		try {
+			em.merge(tarea);
+			return true;
+		}catch(Exception e) {
+			Logg.registrar(e.getLocalizedMessage());
+			return false;
+		}
+	}
 }

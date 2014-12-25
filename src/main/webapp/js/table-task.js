@@ -37,7 +37,20 @@ var App = (function (module) {
 		    	
 		    	// Evento para marcar como realizada
 		    	$('#datos-grid * input[type="checkbox"]').on('change', function(event){
-		    		$( this ).prop('disabled', true);
+		    		// $( this ).prop('disabled', true);
+		    		
+		    		var tr = $(event.target).closest('tr');
+		            var index = tr[0].id;
+		            // var row = grid.jqGrid('getRowData', index);
+		            
+		    		App.rest.finishTask(index, function(tarea) {
+		    			if(typeof(tarea) != 'undefined' && tarea != null) {
+		    				$('#datos-grid tr[id="' + index +'"] input[type="checkbox"]').attr("disabled", true);
+		    			}else {
+		    				$('#datos-grid tr[id="' + index +'"] input[type="checkbox"]').attr("checked", false);
+		    				alert("No se pudo marcar la tarea como realizada");
+		    			}
+		    		});
 	    		});
 		    }
 		    // caption:"Lista de tareas"
