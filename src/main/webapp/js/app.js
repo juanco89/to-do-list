@@ -2,9 +2,21 @@
 (function(){
 	var app = angular.module('AppToDo', []);
 	
-	app.controller('TasksController', function(){
-		this.tareas = tasks;
-	});
+	app.controller('TasksController', ['$http', function($http){
+		
+		var tareas = this;
+		tareas.tareas = [];
+		// allTasks = tareas.tareas; 
+		
+		$http.get('/to-do-list/rest/tareas/buscarTodas').success(function(data) {
+			tareas.tareas = data;
+			// tareas.tareas.push(allTasks);
+			allTasks = tareas.tareas;
+			
+		}).error(function(error) {
+			alert(error);
+		});
+	}]);
 	
 	app.controller('FormController', function(){
 		this.tarea = {};
@@ -18,7 +30,7 @@
 		
 		this.addTask = function() {
 			this.tarea.fecha = new Date().getTime();
-			tasks.push(this.tarea);
+			allTasks.push(this.tarea);
 			
 			this.tarea = {};
 			initTask();
@@ -26,14 +38,6 @@
 	});
 	
 	
-	var tasks = []; 
-//		[
-//			{
-//				id: 1,
-//				descripcion: '',
-//				fecha: '',
-//				realizada: false
-//			}
-//		];
+	var allTasks = [];
 	
 })();

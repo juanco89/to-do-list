@@ -21,16 +21,12 @@
 		
 		<div ng-controller='TasksController as tasksCtl'>
 		
-			<div ng-repeat='tarea in tasksCtl.tareas'>
+			<blockquote ng-repeat='tarea in tasksCtl.tareas'>
+				<div>{{tarea.descripcion}}</div>
+				<span>{{tarea.fecha | date:'dd/MM/yyyy @ h:mma'}} - </span>
+				Terminada <input type="checkbox" ng-selected="tarea.realizada" ng-disabled="tarea.realizada" />
+			</blockquote>
 				
-				<blockquote>
-					<div>{{tarea.descripcion}}</div>
-					<span>{{tarea.fecha | date:'dd/MM/yyyy @ h:mma'}} - </span>
-					Terminada <input type="checkbox" ng-selected="tarea.realizada" ng-disabled="tarea.realizada" />
-				</blockquote>
-				
-			</div>
-			
 		</div>
 		
 	</body>
