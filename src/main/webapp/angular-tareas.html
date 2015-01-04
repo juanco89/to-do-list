@@ -13,20 +13,21 @@
 		<div ng-controller="FormController as formCtl">
 		
 			<form name="frmGuardarTareaAngular" ng-submit="frmGuardarTareaAngular.$valid && formCtl.addTask()" novalidate>
-				<label for="txtDescripcion">Descripción</label>
 	   			<input type="text" id="txtDescripcion" name="txtDescripcion" placeholder="Descripción" ng-model="formCtl.tarea.descripcion" required/>
 	   			
-	   			<input type="submit" id="btnGuardar" name="btnGuardar" value="Guardar" />
+	   			<input type="submit" id="btnGuardar" name="btnGuardar" value="Agregar" />
 			</form>
 			
 		</div>
 		
 		<div ng-controller='TasksController as tasksCtl'>
 		
-			<blockquote ng-repeat='tarea in tasksCtl.tareas'>
-				<div>{{tarea.descripcion}}</div>
-				<span>{{tarea.fecha | date:'dd/MM/yyyy @ h:mma'}} - </span>
-				Terminada <input type="checkbox" ng-selected="tarea.realizada" ng-disabled="tarea.realizada" />
+			<blockquote ng-repeat='tarea in tasksCtl.tareas' ng-class="{'tarea-terminada': tarea.realizado}">
+				<div>
+					<input type="checkbox" ng-checked="tarea.realizado" ng-disabled="tarea.realizado" />
+					 - {{tarea.descripcion}}
+				</div>
+				<span>{{tarea.fecha | date:'dd/MM/yyyy @ h:mma'}}</span>
 			</blockquote>
 				
 		</div>

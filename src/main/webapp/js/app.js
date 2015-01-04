@@ -6,11 +6,9 @@
 		
 		var tareas = this;
 		tareas.tareas = [];
-		// allTasks = tareas.tareas; 
 		
 		$http.get('/to-do-list/rest/tareas/buscarTodas').success(function(data) {
 			tareas.tareas = data;
-			// tareas.tareas.push(allTasks);
 			allTasks = tareas.tareas;
 			
 		}).error(function(error) {
@@ -23,7 +21,7 @@
 		
 		var initTask = function() {
 			this.tarea = {};
-			this.tarea.realizada = false;
+			this.tarea.realizado = false;
 		};
 		
 		initTask();

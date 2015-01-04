@@ -7,3 +7,6 @@
 	border-color: #78FA89;
 }
 
+.tarea-terminada{
+	text-decoration:line-through;
+}
