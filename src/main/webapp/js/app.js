@@ -30,7 +30,7 @@
 		
 		this.addTask = function() {
 			this.tarea.fecha = new Date().getTime();
-			allTasks.push(this.tarea);
+			allTasks.unshift(this.tarea);
 			
 			this.tarea = {};
 			initTask();

@@ -6,13 +6,15 @@
 		<title>AngularJS TO DO</title>
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular.js"></script>
   		<script type="text/javascript" src="js/app.js"></script>
+  		
+  		<link rel="stylesheet" href="css/basic-todo-style.css">
 	</head>
 	<body>
 		<div ng-controller="FormController as formCtl">
 		
-			<form name="frmGuardarTareaAngular" ng-submit="formCtl.addTask()">
+			<form name="frmGuardarTareaAngular" ng-submit="frmGuardarTareaAngular.$valid && formCtl.addTask()" novalidate>
 				<label for="txtDescripcion">Descripción</label>
-	   			<input type="text" id="txtDescripcion" name="txtDescripcion" placeholder="Descripción" ng-model="formCtl.tarea.descripcion" />
+	   			<input type="text" id="txtDescripcion" name="txtDescripcion" placeholder="Descripción" ng-model="formCtl.tarea.descripcion" required/>
 	   			
 	   			<input type="submit" id="btnGuardar" name="btnGuardar" value="Guardar" />
 			</form>
