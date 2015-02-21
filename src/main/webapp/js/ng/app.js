@@ -1,6 +1,6 @@
 
 (function(){
-	var app = angular.module('AppToDo', []);
+	var app = angular.module('AppToDo', ['ngResource']);
 	
 	app.controller('TasksController', ['$http', function($http){
 		
