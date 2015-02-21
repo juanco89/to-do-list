@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -50,6 +51,13 @@ public class ServicioTareasRest implements Serializable {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Tarea buscarTarea(@PathParam("id") String id) {
 		return dao.buscar(Integer.parseInt(id));
+	}
+
+	
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	public Tarea crear(Tarea tarea) {
+		return (dao.guardar(tarea)) ? tarea : null ;
 	}
 	
 	

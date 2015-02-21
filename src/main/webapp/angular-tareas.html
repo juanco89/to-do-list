@@ -14,8 +14,8 @@
 	<body>
 		<div ng-controller="FormController as formCtl">
 		
-			<form name="frmGuardarTareaAngular" ng-submit="frmGuardarTareaAngular.$valid && formCtl.addTask()" novalidate>
-	   			<input type="text" id="txtDescripcion" name="txtDescripcion" placeholder="Descripción" ng-model="formCtl.tarea.descripcion" required/>
+			<form name="frmGuardarTareaAngular" ng-submit="frmGuardarTareaAngular.$valid && addTask()" novalidate>
+	   			<input type="text" id="txtDescripcion" name="txtDescripcion" placeholder="Descripción" ng-model="tarea.descripcion" required/>
 	   			
 	   			<input type="submit" id="btnGuardar" name="btnGuardar" value="Agregar" />
 			</form>

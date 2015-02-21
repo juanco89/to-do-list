@@ -40,25 +40,33 @@ $scope.hola ='Hola mundo';
 	}]);
 
 	app.controller('FormController',[ '$scope', 'Tarea', 'ListaTareas' ,function($scope, Tarea, ListaTareas){
-		this.tarea = {};
+		
+		$scope.tarea = {};
 		
 		var initTask = function() {
-			this.tarea = {};
-			this.tarea.realizado = false;
+			$scope.tarea = {};
+			$scope.tarea.realizado = false;
 		};
 		
 		initTask();
 		
-		this.addTask = function() {
-			this.tarea.fecha = new Date().getTime();
-			allTasks.unshift(this.tarea);
-			
-			this.tarea = {};
-			initTask();
+		$scope.addTask = function() {
+			if(! (!!$scope.tarea.descripcion)) {
+				console.log('Ingrese la descripcion de la tarea.');
+				return;
+			}
+			var nTarea = new Tarea();
+
+			nTarea.descripcion = $scope.tarea.descripcion;
+			nTarea.fecha = new Date();
+			nTarea.realizado = $scope.tarea.realizado;
+
+			nTarea.$save(function(data) {
+				ListaTareas.addTask(data);
+				console.log(data);
+				initTask();
+			});
 		};
 	}]);
-	
-	
-	var allTasks = [];
 	
 })();
