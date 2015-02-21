@@ -29,3 +29,7 @@ nb-configuration.xml
 
 # Sonar
 sonar*
+
+# Sublime
+/**/*.sublime-workspace
+/**/*.sublime-project
