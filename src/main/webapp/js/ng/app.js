@@ -21,13 +21,14 @@
 
 	app.factory('Tarea', function($resource) {
 
-		return $resource('/to-do-list/rest/tasks/:id');
+		return $resource('/to-do-list/rest/tasks/:id', {id:'@id'}, 
+			{
+				update: { method:'PUT' }
+			});
 
 	});
 
-	app.controller('TasksController', ['$scope', '$http', 'Tarea', 'ListaTareas', function($scope, $http, Tarea, ListaTareas){
-		
-$scope.hola ='Hola mundo';
+	app.controller('TasksController', ['$scope', '$http', 'Tarea', 'ListaTareas', function($scope, $http, Tarea, ListaTareas) {
 
 		Tarea.query(function(value) {
 			ListaTareas.setTasks(value);
@@ -35,6 +36,15 @@ $scope.hola ='Hola mundo';
 
 		$scope.tasks = function() {
 			return ListaTareas.getTasks();
+		};
+
+		$scope.marcarComoRealizada = function(tarea) {
+			tarea.realizado = true;
+			tarea.$update({id: tarea.id}, function() {
+				
+			}, function() {
+				tarea.realizado = false;  // rollback
+			} );
 		};
 
 	}]);

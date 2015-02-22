@@ -64,7 +64,7 @@ public class ServicioTareasRest implements Serializable {
 	@Path("/{id}")
 	@PUT
 	@Produces(MediaType.APPLICATION_JSON)
-	public Tarea agregar(@QueryParam("descripcion") String id, Tarea tarea) {
+	public Tarea agregar(@PathParam("id") String id, Tarea tarea) {
 		if(tarea != null) {
 			if(dao.actualizar(tarea)) {
 				return tarea;

@@ -26,7 +26,7 @@
 		
 			<blockquote ng-repeat='tarea in tasks()' ng-class="{'tarea-terminada': tarea.realizado}">
 				<div>
-					<input type="checkbox" ng-checked="tarea.realizado" ng-disabled="tarea.realizado" />
+					<input type="checkbox" ng-checked="tarea.realizado" ng-disabled="tarea.realizado" ng-change="marcarComoRealizada(tarea)" ng-model="tarea.realizado"/>
 					 - {{tarea.descripcion}}
 				</div>
 				<span>{{tarea.fecha | date:'dd/MM/yyyy @ h:mma'}}</span>
