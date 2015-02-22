@@ -23,8 +23,10 @@
 		</div>
 		
 		<div ng-controller='TasksController as tasksCtl'>
-		
-			<blockquote ng-repeat='tarea in tasks()' ng-class="{'tarea-terminada': tarea.realizado}">
+
+			<input type="checkbox" ng-model="verTareasRealizadas" ng-checked="verTareasRealizadas" /> Ver tareas realizadas.
+
+			<blockquote ng-repeat='tarea in tasks()' ng-class="{'tarea-terminada': tarea.realizado}" ng-hide="tarea.realizado && !verTareasRealizadas" >
 				<div>
 					<input type="checkbox" ng-checked="tarea.realizado" ng-disabled="tarea.realizado" ng-change="marcarComoRealizada(tarea)" ng-model="tarea.realizado"/>
 					 - {{tarea.descripcion}}

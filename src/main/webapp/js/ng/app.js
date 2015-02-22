@@ -30,6 +30,8 @@
 
 	app.controller('TasksController', ['$scope', '$http', 'Tarea', 'ListaTareas', function($scope, $http, Tarea, ListaTareas) {
 
+		$scope.verTareasRealizadas = true;
+
 		Tarea.query(function(value) {
 			ListaTareas.setTasks(value);
 		});
